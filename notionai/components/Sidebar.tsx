@@ -12,25 +12,38 @@ import {
   
 
 function Sidebar() {
+
+    const menuOptions =(
+        <>
+        <NewDocumentButton />
+        {/* my document */}
+        {/* List */}
+        {/* shared with Me */}
+        {/* List */}
+        </>
+    );
+
   return (
     <div className="p-2 md:p-5 bg-gray-200 relative">
-        <Sheet>
-            <SheetTrigger>
-                <MenuIcon className="p-2 hover:opacity-30 rounded-lg" size={40}/>
-            </SheetTrigger>
-            <SheetContent side="left">
-                <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-                <div>
-                    {/* option */}
-                </div>
-                
-                </SheetHeader>
-            </SheetContent>
-        </Sheet>
+        <div className="md:hidden">
+            <Sheet>
+                <SheetTrigger>
+                    <MenuIcon className="p-2 hover:opacity-30 rounded-lg" size={40}/>
+                </SheetTrigger>
+                <SheetContent side="left">
+                    <SheetHeader>
+                    <SheetTitle>Menu</SheetTitle>
+                    <div>
+                        {/* option */}
+                        {menuOptions}
+                    </div>
+                    
+                    </SheetHeader>
+                </SheetContent>
+            </Sheet>
+        </div>
         <div className="hidden md:inline">
-            <NewDocumentButton />
-
+            {menuOptions}
         </div>
     </div>
   )
