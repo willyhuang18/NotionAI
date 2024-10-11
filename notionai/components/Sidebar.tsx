@@ -8,9 +8,20 @@ import {
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
-  
+import { useCollection} from "react-firebase-hooks/firestore";
+import { useUser } from '@clerk/nextjs'
+import { collectionGroup,query, where } from "firebase/firestore";
+import {db} from '@/firebase';
+
+
 
 function Sidebar() {
+    const {user} =  useUser();
+    const [data, loading, error] = useCollection(
+        user && (
+            query(collectionGroup(db,'rooms'),where('userId', '==', user.emailAddresses[0].toString()))
+        )
+    );
 
     const menuOptions =(
         <>
