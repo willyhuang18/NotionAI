@@ -1,5 +1,6 @@
 "use client"
 import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/nextjs"
+import Breadcrumbs from "./Breadcrumbs";
 
 function Header() {
     const {user} = useUser();
@@ -11,7 +12,8 @@ function Header() {
             {`s`} space
             </h1>
         )}
-        {/* Breadcrumbs */}
+          {/* Breadcrumbs */}
+          <Breadcrumbs />
         <div>
             <SignedIn>
                 <UserButton />

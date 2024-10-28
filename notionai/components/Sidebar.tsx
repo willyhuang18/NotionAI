@@ -74,7 +74,7 @@ function Sidebar() {
     );
     setGroupData(grouped);
   }, [data]);
-console.log(groupData.owner);
+
 
   const menuOptions = (
     <>
