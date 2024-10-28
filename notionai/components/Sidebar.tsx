@@ -90,14 +90,21 @@ console.log(groupData.owner);
             <h2 className="text-gray-500 font-semibold text-sm">
               My Documents
             </h2>
-              {groupData.owner.map((doc) => (
-              <SidebarOption key ={doc.id} id={doc.id} href={`/doc/${doc.id}`} />
+            {groupData.owner.map((doc) => (
+              <SidebarOption key={doc.id} id={doc.id} href={`/doc/${doc.id}`} />
             ))}
           </>
         )}
       </div>
-      {/* List */}
       {/* shared with Me */}
+      {groupData.editor.length > 0 && (
+        <>
+          <h2 className="text-gray-500 font-semibold text-sm">Shared with me</h2>
+          {groupData.editor.map((doc) => (
+            <SidebarOption key={doc.id} id={doc.id} href={`/doc/${doc.id}`} />
+          ))}
+        </>
+      )}
       {/* List */}
     </>
   );
