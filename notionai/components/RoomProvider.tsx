@@ -20,6 +20,7 @@ function RoomProvider({
         cursor: null,
       }}
     >
+      {/* {children} */}
       <ClientSideSuspense fallback={<LoadingSpinner />}>
         <LiveCursorProvider>{children}</LiveCursorProvider>
       </ClientSideSuspense>

@@ -28,6 +28,7 @@ function Document({ id }: { id: string }) {
       });
     }
   };
+console.log(input);
 
   return (
     <div>

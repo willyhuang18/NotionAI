@@ -7,17 +7,19 @@ function LiveCursorProvider({ children }: { children: React.ReactNode }) {
   const [myPresence, updateMyPresence] = useMyPresence();
   const others = useOthers();
 
-  function handlePointerMove(e: PointerEvent<HTMLDivElement>) {
-    //update from ClientX and ClientY to PageX and PageY for full page cursor tracking
+  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    // Update from clientX and clientY to pageX and pageY for full-page cursor tracking
     const cursor = { x: Math.floor(e.pageX), y: Math.floor(e.pageY) };
+    updateMyPresence({ cursor }); // Update presence with the new cursor position
   }
 
   function handlePointerLeave() {
     updateMyPresence({ cursor: null });
   }
+
   return (
     <div onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
-      {/* render cursor */}
+      {/* Render cursor for other users */}
       {others
         .filter((other) => other.presence.cursor != null)
         .map(({ connectionId, presence, info }) => (
@@ -28,6 +30,7 @@ function LiveCursorProvider({ children }: { children: React.ReactNode }) {
             y={presence.cursor!.y}
           />
         ))}
+      {children}
     </div>
   );
 }

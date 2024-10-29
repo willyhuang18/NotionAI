@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+"use client";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import stringToColor from "@/lib/stringToColor";
 function FollowPointer({
@@ -18,7 +17,7 @@ function FollowPointer({
   const color = stringToColor(info.email || "1");
   return (
     <motion.div
-      className="h-4 w-4 rounded-full absolute z-58"
+      className="h-4 w-4 rounded-full absolute z-50"
       style={{
         top: y,
         left: x,
@@ -48,10 +47,7 @@ function FollowPointer({
         width="1em"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.
-              57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"
-        ></path>
+        <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"></path>
       </svg>
       <motion.div
         style={{

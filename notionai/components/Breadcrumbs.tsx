@@ -15,7 +15,7 @@ function Breadcrumbs() {
 
   const segments = path.split("/");
 
-  console.log(segments);
+  // console.log(segments);
 
   return (
     <Breadcrumb>
