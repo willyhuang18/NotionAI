@@ -16,6 +16,7 @@ function LiveCursorProvider({ children }: { children: React.ReactNode }) {
   function handlePointerLeave() {
     updateMyPresence({ cursor: null });
   }
+console.log(JSON.stringify(myPresence.cursor));
 
   return (
     <div onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
