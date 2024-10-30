@@ -46,6 +46,7 @@ console.log(input);
           {isOwner && (
             <>
               {/* invite User */}
+              <InviteUser />
               {/* Delete Document */}
               <DeleteDocument />
             </>
