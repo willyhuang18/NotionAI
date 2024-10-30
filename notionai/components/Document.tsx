@@ -17,10 +17,10 @@ function Document({ id }: { id: string }) {
   const [isUpdating, startTransition] = useTransition();
   const isOwner = useOwner();
 
-    useEffect(() => {
-        if (data) {
-          setInput(data.title);
-      }
+  useEffect(() => {
+    if (data) {
+      setInput(data.title);
+    }
   }, [data]);
   const updateTitle = (e: FormEvent) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ function Document({ id }: { id: string }) {
       });
     }
   };
-console.log(input);
+  console.log(input);
 
   return (
     <div className="flex-1 h-full bg-white p-5">
@@ -56,7 +56,7 @@ console.log(input);
           {/* isOwner && inviter, */}
         </form>
       </div>
-      <div  className="flex max-w-6xl mx-auto justify-between items-center mb-5">
+      <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
         {/* ManageUsers */}
         <ManageUsers />
         {/* Avatars */}
