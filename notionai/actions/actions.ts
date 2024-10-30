@@ -52,3 +52,29 @@ export async function deleteDocument(roomId: string) {
     }
     
 }
+
+export async function InviteUserToDoc(roomId: string, email: string) {
+    auth().protect();
+    console.log("inviteUserToDoc", roomId, email);
+    
+    try { 
+        await adminDb
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+                .doc(roomId)
+            .set({
+                userId: email,
+                role: "editor",
+                createdAt: new Date(),
+                roomId,
+            })
+        return {success:true}
+    } catch (error) {
+        console.error(error);
+        return  {success : false, message: "Error inviting user"};
+        
+        
+    }
+    
+}
