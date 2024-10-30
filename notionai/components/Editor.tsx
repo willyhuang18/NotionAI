@@ -17,21 +17,27 @@ type EditorProps = {
 };
 
 function BlockNote({ doc, provider, darkMode }: EditorProps) {
-//live typing status
-    const userInfo = useSelf((me) => me.info)
-    const editor: BlockNoteEditor = useCreateBlockNote({
-        collaboration: {
-            provider,
-            fragment: doc.getXmlFragment("document-store"),
-            user: {
-                name: userInfo?.name,
-                color:stringToColor(userInfo?.email),
-            }
-        }
-    })
-    return (<div>
-        <BlockNoteView className="min-h-screen" editor={editor} theme={ darkMode ? "dark" : "light"} />
-  </div>);
+  //live typing status
+  const userInfo = useSelf((me) => me.info);
+  const editor: BlockNoteEditor = useCreateBlockNote({
+    collaboration: {
+      provider,
+      fragment: doc.getXmlFragment("document-store"),
+      user: {
+        name: userInfo?.name,
+        color: stringToColor(userInfo?.email),
+      },
+    },
+  });
+  return (
+    <div className="relative max-w-6xl mx-auto">
+      <BlockNoteView
+        className="min-h-screen"
+        editor={editor}
+        theme={darkMode ? "dark" : "light"}
+      />
+    </div>
+  );
 }
 
 function Editor() {
