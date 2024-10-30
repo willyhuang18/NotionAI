@@ -1,6 +1,7 @@
 import React, { useState, useTransition } from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -9,11 +10,29 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
+import { usePathname, useRouter } from "next/navigation";
+import { deleteDocument } from "@/actions/actions";
 
 function DeleteDocument() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const handleDelete = async () => {};
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    const roomId = pathname.split("/").pop();
+    if (!roomId) return;
+    startTransition(async () => {
+      const { success } = await deleteDocument(roomId);
+      if (success) {
+        setIsOpen(false);
+        router.push("/");
+        // toast.success("Room Deleted Successfully!");
+      } else {
+        // toast.error("Failed to delete room!");
+      }
+    });
+  };
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <Button asChild variant="destructive">
@@ -36,6 +55,11 @@ function DeleteDocument() {
           >
             {isPending ? " Deleting..." : "Delete"}
           </Button>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
