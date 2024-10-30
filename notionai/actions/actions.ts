@@ -62,7 +62,7 @@ export async function InviteUserToDoc(roomId: string, email: string) {
             .collection("users")
             .doc(email)
             .collection("rooms")
-                .doc(roomId)
+            .doc(roomId)
             .set({
                 userId: email,
                 role: "editor",
@@ -78,3 +78,20 @@ export async function InviteUserToDoc(roomId: string, email: string) {
     }
     
 }
+export async function removeUserFromDocument(roomId: string, email: string) {
+    auth().protect();
+    console.log("removeUserFromDocument", roomId, email);
+    try {
+        await adminDb
+            .collection("users")
+            .doc(email)
+            .collection("rooms")
+            .doc(roomId)
+            .delete();
+        return {success:true}
+    } catch(error) {
+        console.error(error);
+        return {success : false, message: "Error removing user"};
+        
+    }
+ }

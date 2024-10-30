@@ -25,9 +25,9 @@ function InviteUser() {
     const roomId = pathname.split("/").pop();
     if (!roomId) return;
     startTransition(async () => {
-      const response = await InviteUserToDoc(roomId, email);
+      const { success } = await InviteUserToDoc(roomId, email);
 
-      if (response && response.success) {
+      if (success) {
         setIsOpen(false);
         router.push("/");
         toast.success("Room Deleted Successfully!");

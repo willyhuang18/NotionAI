@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
-import { InviteUserToDoc } from "@/actions/actions";
+import { InviteUserToDoc, removeUserFromDocument } from "@/actions/actions";
 import { toast } from "sonner";
 import { useUser } from "@clerk/nextjs";
 import { useRoom } from "@liveblocks/react/suspense";
@@ -28,7 +28,17 @@ function ManageUsers() {
   const [usersInRoom] = useCollection(
     user && query(collectionGroup(db, "rooms"), where("roomId", "==", room.id))
   );
-  const handleDelete = async (userId: string) => {};
+  const handleDelete = async (userId: string) => {
+    startTransition(async () => {
+      if (!user) return;
+      const { success } = await removeUserFromDocument(room.id, userId);
+      if (success) {
+        toast.success("User removed from document");
+      } else {
+        toast.error("Failed to remove user from document");
+      }
+    });
+  };
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <Button asChild variant="outline">
@@ -36,9 +46,9 @@ function ManageUsers() {
       </Button>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Invite a User to collaborate!</DialogTitle>
+          <DialogTitle>Users with Access</DialogTitle>
           <DialogDescription>
-            Enter the email of the user you want to invite
+            Below is a list of users who have access to this document
           </DialogDescription>
         </DialogHeader>
         <hr className="my-2" />
