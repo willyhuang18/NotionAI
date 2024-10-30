@@ -48,7 +48,6 @@ console.log(input);
               {/* invite User */}
               {/* Delete Document */}
               <DeleteDocument />
-            <p>Own this</p>
             </>
           )}
           {/* isOwner && inviter, */}

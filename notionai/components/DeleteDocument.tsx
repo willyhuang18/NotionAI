@@ -12,6 +12,7 @@ import {
 import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { deleteDocument } from "@/actions/actions";
+import { toast } from "sonner";
 
 function DeleteDocument() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +24,14 @@ function DeleteDocument() {
     const roomId = pathname.split("/").pop();
     if (!roomId) return;
     startTransition(async () => {
-      const { success } = await deleteDocument(roomId);
-      if (success) {
+      const response = await deleteDocument(roomId);
+
+      if (response && response.success) {
+        toast.error("Failed to delete room!");
+      } else {
         setIsOpen(false);
         router.push("/");
-        // toast.success("Room Deleted Successfully!");
-      } else {
-        // toast.error("Failed to delete room!");
+        toast.success("Room Deleted Successfully!");
       }
     });
   };
