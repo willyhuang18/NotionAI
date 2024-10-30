@@ -1,9 +1,38 @@
-import { useRoom } from "@liveblocks/react/suspense";
+import { useRoom, useSelf } from "@liveblocks/react/suspense";
 import React, { useEffect, useState } from "react";
 import * as Y from "yjs";
 import { LiveblocksYjsProvider } from "@liveblocks/yjs";
 import { Button } from "./ui/button";
 import { MoonIcon, SunIcon } from "lucide-react";
+import { BlockNoteView } from "@blocknote/shadcn";
+import { BlockNoteEditor } from "@blocknote/core";
+import { useCreateBlockNote } from "@blocknote/react";
+import "@blocknote/core/fonts/inter.css";
+import "@blocknote/shadcn/style.css";
+import stringToColor from "@/lib/stringToColor";
+type EditorProps = {
+  doc: Y.Doc;
+  provider: any;
+  darkMode: boolean;
+};
+
+function BlockNote({ doc, provider, darkMode }: EditorProps) {
+//live typing status
+    const userInfo = useSelf((me) => me.info)
+    const editor: BlockNoteEditor = useCreateBlockNote({
+        collaboration: {
+            provider,
+            fragment: doc.getXmlFragment("document-store"),
+            user: {
+                name: userInfo?.name,
+                color:stringToColor(userInfo?.email),
+            }
+        }
+    })
+    return (<div>
+        <BlockNoteView className="min-h-screen" editor={editor} theme={ darkMode ? "dark" : "light"} />
+  </div>);
+}
 
 function Editor() {
   const room = useRoom();
@@ -43,6 +72,7 @@ function Editor() {
         </Button>
       </div>
       {/* BlockNote */}
+      <BlockNote doc={doc} provider={provider} darkMode={darkMode} />
     </div>
   );
 }
