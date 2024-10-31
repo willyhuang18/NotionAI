@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useTransition } from "react";
+import React, { useState, useTransition } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { usePathname, useRouter } from "next/navigation";
-import { InviteUserToDoc, removeUserFromDocument } from "@/actions/actions";
+import { removeUserFromDocument } from "@/actions/actions";
 import { toast } from "sonner";
 import { useUser } from "@clerk/nextjs";
 import { useRoom } from "@liveblocks/react/suspense";

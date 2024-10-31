@@ -8,10 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import * as Y from "yjs";
-
 import { Button } from "./ui/button";
-import { usePathname, useRouter } from "next/navigation";
-import { InviteUserToDoc } from "@/actions/actions";
 import { toast } from "sonner";
 import { Input } from "./ui/input";
 import { BotIcon, MessageCircleCode } from "lucide-react";

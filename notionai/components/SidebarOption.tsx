@@ -8,6 +8,8 @@ function SidebarOption({ href, id }: { href: string; id: string }) {
   const [data, loading, error] = useDocumentData(doc(db, "documents", id));
   const pathname = usePathname();
   const isActive = href.includes(pathname) && pathname != "/";
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error loading document.</p>
   if (!data) return null;
 
   return (

@@ -7,22 +7,22 @@ export async function POST(req: NextRequest) {
     auth().protect()
 
     const { sessionClaims } = await auth();
-    // if (!sessionClaims?.email) {
-    //     throw new Error("User email is not available in session claims.");
-    // }
+    if (!sessionClaims?.email) {
+        throw new Error("User email is not available in session claims.");
+    }
     const { room } = await req.json();
 
-    const session = liveblocks.prepareSession(sessionClaims?.email!, {
+    const session = liveblocks.prepareSession(sessionClaims.email, {
         userInfo: {
-            name: sessionClaims?.fullName!,
-            email: sessionClaims?.email!,
-            avatar: sessionClaims?.image!,
+            name: sessionClaims.fullName,
+            email: sessionClaims.email,
+            avatar: sessionClaims.image,
 
         }
     });
     const usersInRoom = await adminDb
         .collectionGroup("rooms")
-        .where("userId", "==", sessionClaims?.email!)
+        .where("userId", "==", sessionClaims.email)
         .get();
     const userInRoom = usersInRoom.docs.find((doc) => doc.id === room);
 

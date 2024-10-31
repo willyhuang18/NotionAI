@@ -50,7 +50,7 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
   const [language, setLanguage] = useState<string>("");
   const [summary, setSummary] = useState("");
   const [question, setQuestion] = useState("");
-  const [isPending, setIsPending] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const handleAskQuestion = async (e: FormEvent) => {
     e.preventDefault();
     startTransition(async () => {
@@ -90,7 +90,6 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
             the selected language.
           </DialogDescription>
           <hr className="mt-5" />
-          {question && <p className="mt-5 text-gray-500">Q:{question}</p>}
         </DialogHeader>
         {summary && (
           <div className="flex flex-col items-start max-h-96 overflow-y-scroll gap-2 p-5 bg-gray-100">
