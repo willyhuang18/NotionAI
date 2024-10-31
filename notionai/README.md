@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# NotionAI
+
+# NotionAI - AI-Powered Notion Clone
+
+This project is a Notion-inspired productivity and note-taking application built with **Next.js 14**. It features **real-time collaboration**, **user authentication**, **document handling with Firebase**, and **AI-powered insights**. The app is designed for dynamic, collaborative environments, and integrates a variety of modern tools and frameworks.
+
+## Key Features
+
+- **AI Assistance**: Utilizes OpenAI's language models to provide intelligent suggestions, answer queries based on document content, and enhance the user experience.
+- **Real-Time Collaboration**: Allows multiple users to edit documents simultaneously with updates visible in real-time.
+- **User Authentication**: Secured with Clerk, enabling easy user management and session handling.
+- **Scalable Backend**: Deployed with Cloudflare Workers and Firebase for robust data handling and optimized performance.
+
+## Tech Stack
+
+- **Next.js 14**: Framework for building the front end.
+- **Tailwind CSS & ShadUI**: For responsive and customizable styling.
+- **Liveblocks**: Supports real-time collaboration.
+- **Firebase**: Manages data and document storage.
+- **Cloudflare Workers & Hono**: Handles serverless functions and AI integration.
+- **Clerk**: Provides user authentication and account management.
+- **OpenAI API**: Powers AI features for document interactions.
+- **Cloudflare's AI with Hono**: Implements additional AI services to translate, summarize, and analyze content.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Node.js** and **npm**
+- **Firebase Account** for backend data handling
+- **OpenAI API Key** for AI services
+- **Clerk API Key** for user authentication
+- **Cloudflare Account** for deploying serverless functions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
+**Clone the repository**:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   - git clone https://github.com/willyhuang18/NotionAI.git
+   - cd NotionAI/notionai.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Install dependencies**:
+  - npm install
 
-## Learn More
+**Configure environment variables**:
 
-To learn more about Next.js, take a look at the following resources:
+Create a .env.local file in the root directory and add your keys:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+- NEXT_PUBLIC_CLERK_FRONTEND_API=your_clerk_api_key
+- OPEN_AI_KEY=your_openai_api_key
+- Add your Firebase and Cloudflare credentials as well.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Run the development server**:
+- npm run dev
+- Open http://localhost:3000 to view it in your browser.
 
-## Deploy on Vercel
+### Deployment:
+This project is configured to deploy on Cloudflare Workers. Ensure you have wrangler installed and authenticated.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Build and deploy**:
+- npm run build
+- npm run deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Usage 
+**Creating and Editing Documents**: Start a new document or select an existing one. The editor allows formatting, AI assistance, and real-time collaboration.
+
+**Using AI Features**：
+- **Chat with Document**: Submit questions related to the document content.
+- **Translate Document**: Translate document summaries into different languages.
+- **Manage Users**: Clerk handles authentication and allows easy user management.
+
+### Example Usage:
+- **Real-Time Collaboration**: Open a document with multiple users to see updates in real-time.
+- **AI Query**: Ask the AI about document-specific information or request a summary.
+- **Translation**: Translate the document’s summary to a target language.
+  ![3e08c123aa0d7abf80c3849be1a98bd](https://github.com/user-attachments/assets/76049db4-02f5-4b35-b621-6bad6dcc815f)
+  ![487fc89188efea15f4828bd1adec928](https://github.com/user-attachments/assets/9dc513d0-3a53-45c9-bfdb-930a70dec5ac)
