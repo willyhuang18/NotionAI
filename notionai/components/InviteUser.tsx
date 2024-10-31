@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { InviteUserToDoc } from "@/actions/actions";
 import { toast } from "sonner";
 import { Input } from "./ui/input";
