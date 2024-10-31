@@ -1,6 +1,3 @@
-
-# NotionAI
-
 # NotionAI - AI-Powered Notion Clone
 
 This project is a Notion-inspired productivity and note-taking application built with **Next.js 14**. It features **real-time collaboration**, **user authentication**, **document handling with Firebase**, and **AI-powered insights**. The app is designed for dynamic, collaborative environments, and integrates a variety of modern tools and frameworks.
