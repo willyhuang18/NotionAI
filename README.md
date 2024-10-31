@@ -74,3 +74,5 @@ This project is configured to deploy on Cloudflare Workers. Ensure you have wran
 - **Translation**: Translate the document’s summary to a target language.
   ![3e08c123aa0d7abf80c3849be1a98bd](https://github.com/user-attachments/assets/76049db4-02f5-4b35-b621-6bad6dcc815f)
   ![487fc89188efea15f4828bd1adec928](https://github.com/user-attachments/assets/9dc513d0-3a53-45c9-bfdb-930a70dec5ac)
+  ![image](https://github.com/user-attachments/assets/a2c4dab3-9dad-4d1a-9aaf-3f7c32f1385a)
+
