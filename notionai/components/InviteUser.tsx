@@ -18,7 +18,6 @@ function InviteUser() {
   const [email, setEmail] = useState("");
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
-  const router = useRouter();
 
   const handleInvite = async (e: FormEvent) => {
     e.preventDefault();
@@ -29,8 +28,8 @@ function InviteUser() {
 
       if (success) {
         setIsOpen(false);
-        router.push("/");
-        toast.success("Room Deleted Successfully!");
+        setEmail("");
+        toast.success("User Added to Room Successfully!");
       } else {
         toast.error("Failed to delete room!");
       }
