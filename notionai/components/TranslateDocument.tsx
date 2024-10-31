@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { FormEvent,useState, useTransition } from "react";
+import { FormEvent, useState, useTransition } from "react";
 import { toast } from "sonner";
 import { BotIcon } from "lucide-react";
 import Markdown from "react-markdown";
@@ -53,28 +53,37 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
   const handleAskQuestion = async (e: FormEvent) => {
     e.preventDefault();
     startTransition(async () => {
-      const documentData = doc.get("document-store").toJSON();
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/translateDocument`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            documentData,
-            targetLang: language,
-          }),
-        }
-      );
-      if (res.ok) {
-        const { translated_text } = await res.json();
+      try {
+        const documentData = doc.get("document-store").toJSON();
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/translateDocument`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              documentData,
+              targetLang: language,
+            }),
+          }
+        );
+        if (res.ok) {
+          const { translated_text } = await res.json();
 
-        setSummary(translated_text);
-        toast.success("Translated Summary successfully!");
+          setSummary(translated_text);
+          toast.success("Translated Summary successfully!");
+        } else {
+          console.error("Fetch error", res.statusText);
+          toast.error("Failed to translate document");
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while translating");
       }
     });
   };
+  console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
