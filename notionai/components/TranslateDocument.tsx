@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { FormEvent, startTransition, useState, useTransition } from "react";
+import { FormEvent,useState, useTransition } from "react";
 import { toast } from "sonner";
 import { BotIcon } from "lucide-react";
 import Markdown from "react-markdown";
@@ -49,7 +49,6 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
   const [isOpen, setIsOpen] = useState(false);
   const [language, setLanguage] = useState<string>("");
   const [summary, setSummary] = useState("");
-  const [question, setQuestion] = useState("");
   const [isPending, startTransition] = useTransition();
   const handleAskQuestion = async (e: FormEvent) => {
     e.preventDefault();
