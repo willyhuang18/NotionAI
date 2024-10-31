@@ -71,9 +71,9 @@ function Editor() {
     <div className="max-w-6xl mx-auto">
       <div className="flex items-center gap-2 justify-end mb-10">
         {/* AI translateDocument */}
-        <TranslateDocument />
+        <TranslateDocument doc={doc} />
         {/* ChatToDocument AI */}
-
+        <ChatToDocument doc={doc} />
         {/* Dark mode */}
         <Button className={style} onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? <SunIcon /> : <MoonIcon />}
