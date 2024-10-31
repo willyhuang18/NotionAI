@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { FormEvent, useEffect, useState, useTransition } from "react";
 import { Input } from "./ui/input";
@@ -10,6 +11,7 @@ import useOwner from "@/lib/useOwner";
 import DeleteDocument from "./DeleteDocument";
 import InviteUser from "./InviteUser";
 import ManageUsers from "./ManageUsers";
+import Avatars from "./Avatars";
 
 function Document({ id }: { id: string }) {
   const [data, loading, error] = useDocumentData(doc(db, "documents", id));
@@ -60,6 +62,7 @@ function Document({ id }: { id: string }) {
         {/* ManageUsers */}
         <ManageUsers />
         {/* Avatars */}
+        <Avatars />
       </div>
       {/* collaborative Editor */}
       <hr className="pb-10" />
